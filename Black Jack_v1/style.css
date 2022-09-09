@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+.dealer-container {
+    display: flex;
+    justify-items: center;
+    background-color: aqua;
+}
+
+.break {
+    flex-basis: 100%;
+}
+
+.dealer-items {
+    width: 400px;
+    margin: 50px;
+    border: 10px solid red;
+    background-color: bisque;
+}
+
+
+/* .dealer-item1 {
+    min-height: 100px;
+}
+
+.dealer-item2 {
+    min-height: 100px;
+}
+
+.dealer-item3 {
+    min-height: 100px;
+} */
+
+#item1-shuffleBtn {
+    background-color: rgb(9, 83, 41);
+    width: 100px;
+    height: 100px;
+    font-size: 24px;
+    color: white;
+}
+
+#item2-dealBtn {
+    background-color: rgb(184, 66, 153);
+    width: 100px;
+    height: 100px;
+    font-size: 24px;
+    color: white;
+}
+
+#item3-dealerDraw2 {
+    width: 400px;
+    height: 100px;
+    background-color: rgb(111, 200, 145);
+    font-size: 24px;
+}
+
+#item4-dealerDraw4 {
+    width: 400px;
+    height: 100px;
+    background-color: rgb(111, 200, 145);
+    font-size: 24px;
+}
+
+.player-container {
+    padding-top: 100px;
+    display: flex;
+    background-color: greenyellow;
+}
+
+.player-item {
+    width: 200px;
+    margin: 10px;
+    border: 5px solid green;
+    background-color: aqua;
+}
+
+.playerbox-item1 {
+    min-height: 150px;
+}
+
+.playerbox-item2 {
+    min-height: 50px;
+}
+
+.playerbox-item3 {
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+}
+
+.playerbox-item4 {
+    /* width: 200px;
+    min-height: 150px;
+    margin: 25px; */
+    min-height: 50px;
+}
+
+.playerbox-item5 {
+    align-items: center;
+    justify-items: center;
+}
+
+#player1-draw1 {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(111, 200, 145);
+    font-size: 24px;
+}
+
+#player1-draw3 {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(111, 200, 145);
+    font-size: 24px;
+}
+
+#hitBtn {
+    padding-top: 25px;
+    padding-bottom: 30px;
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    font-size: 24px;
+}
+
+#holdBtn {
+    padding-top: 55px;
+    background-color: yellow;
+    width: 100px;
+    height: 100px;
+    font-size: 24px;
+}
+
+#player1-hit1 {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(111, 200, 145);
+    font-size: 24px;
+}
+
+#player1-hit2 {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(111, 200, 145);
+    font-size: 24px;
+}
+
+#player1-total {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(111, 200, 145);
+    font-size: 24px;
+}

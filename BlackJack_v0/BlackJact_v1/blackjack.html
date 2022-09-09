@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="stylesheet.css" />
+    <title>BlackJack</title>
+</head>
+
+<body>
+    <header>
+        <h1>Black Jack</h1>
+        <button class="btn newDeal">Deal</button>
+    </header>
+
+    <main>
+        <section class="players">
+            <h2>this is player</h2>
+            <input type="number" class="dealresult p1-1" />
+            <input type="number" class="dealresult p1-2" />
+            <input type="number" class="dealresult p1-3" />
+            <button class="btn hit">Hit Me!</button>
+            <h2>Place your bet</h2>
+            <button class="bet bet10">$10</button>
+            <button class="bet bet20">$20</button>
+            <button class="bet bet50">$50</button>
+            <button class="bet bet100">$100</button>
+            <span class="totalBet">$</span>
+        </section>
+
+        <section class="house">
+            <h2>this is house</h2>
+            <p class="message">Start guessing...</p>
+            <p class="label-score">💯 Score: <span class="score">20</span></p>
+            <p class="label-highscore">
+                🥇 Highscore: <span class="highscore">0</span>
+            </p>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
