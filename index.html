@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="CSS/style.css" rel="stylesheet" />
+    <title>blackjack_v1</title>
+</head>
+
+<body>
+    <div class="main">
+        <!-- //////////////// DEALER DIV //////////////////////////////// -->
+        <div class="dealer">
+            <div class="msg-dealer">DEALER MSG</div>
+
+        </div>
+        <!-- //////////////CENTER DIV////////////////// -->
+        <div class="center">
+            <div class="msg-center">
+                <button class="btn-buyin-convert">Buy-in ($) :</button>
+                <p class="msg-place-bet">Place your bet:</p>
+                <input type="number" class="input-buyin-value" />
+            </div>
+
+            <button class="btn-token-bet">xx</button>
+
+            <p class="bet-amount">$</p>
+        </div>
+        <div class="player">
+            <div class="msg-player">Buy-In (get tokens)</div>
+            <div class="player-cards-container">
+                <div class="hit3">hit4 <span class="value-hit4">xx</span></div>
+                <div class="hit3">hit3 <span class="value-hit3">xx</span></div>
+                <div class="draw1">Draw1 <span class="value-draw1">xx</span></div>
+                <div class="draw3">Draw3 <span class="value-draw3">xx</span></div>
+                <div class="hit1">hit1 <span class="value-hit1">xx</span></div>
+                <div class="hit2">hit2 <span class="value-hit2">xx</span></div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="vertical-right">
+        <button class="deal">Deal</button>
+    </div>
+
+    <!-- /////////BANK MODAL///////////////////// -->
+    <div class="bank-modal-on bank-modal-off">
+        <p class="bank-balance">
+            Your current bankroll = <span class="value"> 0 $</span>
+        </p>
+        <div>
+            <button class="btn-show-buyin-msg">Change money for tokens (Buy-in)</button>
+        </div>
+        <p class="net-gain-loss">Your net gain/loss: Placeholder $</p>
+
+        <button class="btn-token-10">10</button>
+        <button class="btn-token-20">20</button>
+        <button class="btn-token-50">50</button>
+        <button class="btn-token-100">100</button>
+    </div>
+    <script src="JS/main.js"></script>
+</body>
+
+</html>

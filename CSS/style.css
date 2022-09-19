@@ -1,0 +1,387 @@
+body {
+    margin: 0;
+    background-color: rgb(34, 175, 128);
+}
+
+
+/* *********CENTER ELEMENT********** */
+
+.main {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    margin: auto;
+    width: 800px;
+    height: 1000px;
+    border: solid 5px red;
+    position: relative;
+}
+
+.msg-center {
+    display: flex;
+    align-items: center;
+}
+
+.msg-place-bet {
+    font-size: 25px;
+    font-weight: bolder;
+    color: rgb(8, 52, 35);
+    position: absolute;
+    left: 120px;
+    /* display: none; */
+    visibility: hidden;
+}
+
+.btn-buyin-convert {
+    font-size: 25px;
+    background-color: #ff3869;
+    font-weight: bolder;
+    color: rgb(8, 52, 35);
+    padding: 5px;
+    border: none;
+    border-radius: 20%;
+    position: absolute;
+    left: 80px;
+    cursor: pointer;
+    /* display: 0; */
+    visibility: visible;
+}
+
+.input-buyin-value {
+    /* display: inline-block; */
+    font-size: 20px;
+    width: 80px;
+    padding: 5px;
+    text-align: right;
+    /* margin-top: 38px; */
+    border: solid 2px #ff3869;
+    position: absolute;
+    left: 225px;
+    /* bottom: 15px; */
+    /* cursor: pointer; */
+    /* display: none; */
+    visibility: visible;
+}
+
+.input-buyin-value::-webkit-outer-spin-button,
+.input-buyin-value::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 10px;
+}
+
+.btn-token-bet {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    border: solid 15px #e4cfb8;
+    border-style: dashed;
+    padding: 18px;
+    border-radius: 50%;
+    background-color: #e4cfb8;
+    /* background: linear-gradient(top left, #a4a4ae, #610e7d); */
+    margin-left: 20px;
+    /* cursor: pointer; */
+}
+
+.bet-amount {
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+
+/*////////////////////////////////////////////////////
+*****PLAYER SECTION**********/
+
+.dealer {
+    /* display: flex; */
+    align-items: center;
+    border: solid 5px rgb(68, 80, 172);
+    width: 100%;
+    height: 410px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    /* margin-top: 50%; */
+    margin-bottom: 15px;
+    height: 125px;
+    width: inherit;
+    border: solid 5px blue;
+    position: relative;
+}
+
+.player {
+    /* display: flex; */
+    align-items: center;
+    border: solid 5px rgb(68, 80, 172);
+    width: 100%;
+    /* height: 40%; */
+    height: 410px;
+}
+
+.msg-player {
+    border: solid 5px burlywood;
+    margin: auto;
+    width: 60%;
+    height: 60px;
+    border-radius: 60%;
+    text-align: center;
+    padding-top: 30px;
+    font-size: 30px;
+    background-color: aqua;
+    visibility: visible;
+}
+
+.hit4 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    text-align: center;
+    visibility: hidden;
+}
+
+.value-hit4 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.hit3 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    visibility: hidden;
+}
+
+.value-hit3 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.draw1 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    visibility: hidden;
+}
+
+.value-draw1 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.draw3 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    visibility: hidden;
+}
+
+.value-draw3 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.hit1 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    visibility: hidden;
+}
+
+.value-hit1 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.hit2 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    visibility: hidden;
+}
+
+.value-hit2 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+
+/* ///////////////////////////////////////////////////// 
+/* **BANK MODAL******** */
+
+.bank-modal-on {
+    background-color: beige;
+    border: solid 5px red;
+    width: 600px;
+    height: 400px;
+    border: solid 5px red;
+    position: relative;
+}
+
+.bank-balance {
+    margin-left: 20px;
+    font-size: 25px;
+    /* font-weight: bold; */
+    /* text-transform: uppercase; */
+}
+
+.value {
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.btn-show-buyin-msg {
+    margin-left: 20px;
+    font-size: 20px;
+    border-radius: 25px;
+    background-color: #07341e;
+    color: white;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.btn-token-10 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    border: solid 15px #1d1da7;
+    border-style: dashed;
+    padding: 18px;
+    border-radius: 50%;
+    background-color: #6b6bd8;
+    /* background: linear-gradient(top left, #4646d7, #1d1da7); */
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.btn-token-20 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    border: solid 15px #07341e;
+    border-style: dashed;
+    padding: 18px;
+    border-radius: 50%;
+    background-color: #3ea268;
+    /* background: linear-gradient(top left, #4646d7, #1d1da7); */
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.btn-token-50 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    border: solid 15px #5a121c;
+    border-style: dashed;
+    padding: 18px;
+    border-radius: 50%;
+    background-color: #ff3869;
+    /* background: linear-gradient(top left, #4646d7, #1d1da7); */
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.btn-token-100 {
+    /* text-align: center; */
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    border: solid 15px #664c09;
+    border-style: dashed;
+    padding: 10px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    border-radius: 65%;
+    background-color: #c3985c;
+    /* background: linear-gradient(top left, #4646d7, #1d1da7); */
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.net-gain-loss {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+
+/*/////////////////////////////////////////
+*****VERICAL RIGHT***********/
+
+.deal {
+    position: absolute;
+    top: 34%;
+    left: 85%;
+    font-size: 30px;
+    background-color: #2f2fdb;
+    color: white;
+    padding: 20px;
+}
