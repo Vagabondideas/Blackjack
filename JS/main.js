@@ -26,6 +26,8 @@ const btnGetToken = document.querySelector(".btn-buyin-convert");
 const btnTokenPlace = document.querySelector(".btn-token-place");
 const btnDeal = document.querySelector(".deal");
 const btnDouble = document.querySelector(".btn-double");
+const btnHold = document.querySelector(".btn-hold");
+const btnHit = document.querySelector(".btn-hit");
 const token10 = document.querySelector(".btn-token-10");
 const token20 = document.querySelector(".btn-token-20");
 const token50 = document.querySelector(".btn-token-50");
@@ -65,7 +67,7 @@ let hit4Value = document.querySelector(".value-hit4");
 
 let playerrScore = document.querySelector(".player-score-value");
 
-/***************UTILITY FUNCTIONS ******************** */
+/***************ON-OFF FUNCTIONS ******************** */
 
 function resetBuyinValue() {
     inputMoney.value = "";
@@ -93,6 +95,14 @@ function placeBetMsg_ON() {
 
 function placeBetMsg_OFF() {
     displayPlaceBet.style.visibility = "hidden";
+}
+
+function btnDouble_OFF() {
+    btnDouble.style.display = "none";
+}
+
+function btnDeal_OFF() {
+    btnDeal.style.visibility = "hidden";
 }
 
 // DISPLAY Buy-In btn
@@ -136,10 +146,8 @@ token10.addEventListener("click", function() {
     if (cashBalance < totalBet) {
         displayPlayerMsg.style.visibility = "visible";
         displayPlayerMsg.textContent = `Not enough tokens / ALL IN`;
+        displayBetValue.textContent = `${cashBalance} $`;
     } else {
-        // btnTokenPlace.replaceWith(token10);
-        // btnTokenPlace.outerHTML = token10;
-        // let tokenClone = token10.cloneNode(true);
         btnTokenPlace.textContent = "10";
         btnTokenPlace.style.border = "solid 15px #1d1da7";
         btnTokenPlace.style.borderStyle = "dashed";
@@ -155,8 +163,9 @@ token20.addEventListener("click", function() {
     totalBet += displayBet;
 
     if (cashBalance < totalBet) {
-        displayPlayerMsg.style.visibility = "visible";
+        playerDisplay_ON();
         displayPlayerMsg.textContent = `Not enough tokens / ALL IN`;
+        displayBetValue.textContent = `${cashBalance} $`;
     } else {
         btnTokenPlace.textContent = "20";
         btnTokenPlace.style.border = "solid 15px #07341e";
@@ -173,8 +182,9 @@ token50.addEventListener("click", function() {
     totalBet += displayBet;
 
     if (cashBalance < totalBet) {
-        displayPlayerMsg.style.visibility = "visible";
+        playerDisplay_ON();
         displayPlayerMsg.textContent = `Not enough tokens / ALL IN`;
+        displayBetValue.textContent = `${cashBalance} $`;
     } else {
         btnTokenPlace.textContent = "50";
         btnTokenPlace.style.border = "solid 15px #5a121c";
@@ -191,8 +201,9 @@ token100.addEventListener("click", function() {
     totalBet += displayBet;
 
     if (cashBalance < totalBet) {
-        displayPlayerMsg.style.visibility = "visible";
+        playerDisplay_ON();
         displayPlayerMsg.textContent = `Not enough tokens / ALL IN`;
+        displayBetValue.textContent = `${cashBalance} $`;
     } else {
         btnTokenPlace.textContent = "100";
         btnTokenPlace.style.border = "solid 15px #664c09";
@@ -209,14 +220,18 @@ token100.addEventListener("click", function() {
 
 ////////////////////// DEAL ////////////////////////
 btnDeal.addEventListener("click", function() {
+    playerDisplay_OFF();
+
     playerDraw1.style.visibility = "visible";
     playerDraw3.style.visibility = "visible";
     dealerDraw2.style.visibility = "visible";
     dealerDraw4.style.visibility = "visible";
-
-    placeBetMsg_OFF();
-    btnTokenPlace.style.visibility = "hidden";
-    btnDouble.style.display = "flex";
+    /*pop-Up Button Double if cash balance provides */
+    if (cashBalance !== totalBet) {
+        placeBetMsg_OFF();
+        // btnTokenPlace.style.visibility = "hidden";
+        btnDouble.style.display = "flex";
+    }
 
     let dealArray = [];
     for (let i = 0; i < 4; i++) {
@@ -288,4 +303,24 @@ btnDeal.addEventListener("click", function() {
         dealerDisplay_ON();
         displayDealerMsg.textContent = `Player Wins !`;
     }
+
+    btnDeal_OFF();
+    btnHold.style.visibility = "visible";
+    btnHit.style.visibility = "visible";
+});
+
+btnDouble.addEventListener("click", function() {
+    let doubleBet = totalBet * 2;
+    console.log("total bet after double = " + totalBet);
+
+    if (doubleBet > cashBalance) {
+        playerDisplay_ON();
+        displayPlayerMsg.textContent = `Insufficient Funds`;
+        /*TO DO
+        add Timer - then playerDisplay_OFF */
+    } else {
+        displayBetValue.textContent = `${doubleBet} $`;
+    }
+
+    btnDouble_OFF();
 });
