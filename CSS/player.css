@@ -1,0 +1,139 @@
+.msg-player {
+    border: solid 5px burlywood;
+    margin: auto;
+    width: 60%;
+    height: 60px;
+    border-radius: 60%;
+    text-align: center;
+    padding-top: 30px;
+    font-size: 30px;
+    background-color: aqua;
+    visibility: visible;
+}
+
+.hit4 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    text-align: center;
+    visibility: hidden;
+}
+
+.value-hit4 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.hit3 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    visibility: hidden;
+}
+
+.value-hit3 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.draw1 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    visibility: hidden;
+}
+
+.value-draw1 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.draw3 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    visibility: hidden;
+}
+
+.value-draw3 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.hit1 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    visibility: hidden;
+}
+
+.value-hit1 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.hit2 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    visibility: hidden;
+}
+
+.value-hit2 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}

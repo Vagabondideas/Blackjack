@@ -1,0 +1,145 @@
+.msg-dealer {
+    border: solid 5px burlywood;
+    margin-top: 300px;
+    justify-content: center;
+    width: 60%;
+    height: 60px;
+    border-radius: 60%;
+    text-align: center;
+    padding-top: 30px;
+    font-size: 30px;
+    background-color: aqua;
+    position: absolute;
+    left: 150px;
+    visibility: visible;
+}
+
+.random4 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    text-align: center;
+    visibility: hidden;
+}
+
+.value-random4 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.random3 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    visibility: hidden;
+}
+
+.value-random3 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.draw2 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    top: 55px;
+    visibility: visible;
+}
+
+.value-draw2 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 30%;
+    left: 6%;
+}
+
+.draw4 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    top: 55px;
+    visibility: visible;
+}
+
+.value-draw4 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 30%;
+    left: 6%;
+    visibility: hidden;
+}
+
+.random1 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    visibility: hidden;
+}
+
+.value-random1 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.random2 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    visibility: hidden;
+}
+
+.value-random2 {
+    display: inline-block;
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}

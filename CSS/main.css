@@ -3,9 +3,6 @@ body {
     background-color: rgb(34, 175, 128);
 }
 
-
-/* *********CENTER ELEMENT********** */
-
 .main {
     display: flex;
     flex-direction: column;
@@ -16,6 +13,41 @@ body {
     border: solid 5px red;
     position: relative;
 }
+
+.dealer {
+    /* display: flex; */
+    align-items: center;
+    border: solid 5px rgb(68, 80, 172);
+    width: 100%;
+    height: 410px;
+    position: relative;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    /* margin-top: 50%; */
+    margin-bottom: 15px;
+    height: 125px;
+    width: inherit;
+    border: solid 5px blue;
+    position: relative;
+}
+
+.player {
+    /* display: flex; */
+    align-items: center;
+    border: solid 5px rgb(68, 80, 172);
+    width: 100%;
+    /* height: 40%; */
+    height: 410px;
+    position: relative;
+}
+
+
+/* *********CENTER ELEMENT********** */
 
 .msg-center {
     display: flex;
@@ -69,7 +101,7 @@ body {
     margin: 10px;
 }
 
-.btn-token-bet {
+.btn-token-place {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
@@ -79,9 +111,23 @@ body {
     padding: 18px;
     border-radius: 50%;
     background-color: #e4cfb8;
-    /* background: linear-gradient(top left, #a4a4ae, #610e7d); */
-    margin-left: 20px;
-    /* cursor: pointer; */
+    /* margin-left: 20px; */
+    visibility: visible;
+}
+
+.btn-double {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    border: solid 15px #e4cfb8;
+    border-style: dashed;
+    padding: 18px;
+    border-radius: 50%;
+    background-color: #e4cfb8;
+    /* margin-left: 15px; */
+    cursor: pointer;
+    display: none;
 }
 
 .bet-amount {
@@ -89,184 +135,10 @@ body {
     color: white;
     font-weight: bold;
     margin-left: 10px;
+    display: inline;
 }
 
 
-/*////////////////////////////////////////////////////
-*****PLAYER SECTION**********/
-
-.dealer {
-    /* display: flex; */
-    align-items: center;
-    border: solid 5px rgb(68, 80, 172);
-    width: 100%;
-    height: 410px;
-}
-
-.center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    /* margin-top: 50%; */
-    margin-bottom: 15px;
-    height: 125px;
-    width: inherit;
-    border: solid 5px blue;
-    position: relative;
-}
-
-.player {
-    /* display: flex; */
-    align-items: center;
-    border: solid 5px rgb(68, 80, 172);
-    width: 100%;
-    /* height: 40%; */
-    height: 410px;
-}
-
-.msg-player {
-    border: solid 5px burlywood;
-    margin: auto;
-    width: 60%;
-    height: 60px;
-    border-radius: 60%;
-    text-align: center;
-    padding-top: 30px;
-    font-size: 30px;
-    background-color: aqua;
-    visibility: visible;
-}
-
-.hit4 {
-    display: inline-block;
-    width: 100px;
-    height: 200px;
-    border: solid 2px black;
-    margin-left: 20px;
-    position: relative;
-    text-align: center;
-    visibility: hidden;
-}
-
-.value-hit4 {
-    display: inline-block;
-    border: solid 3px red;
-    border-radius: 50%;
-    background-color: white;
-    padding: 30px;
-    position: absolute;
-    top: 35%;
-    left: 10%;
-}
-
-.hit3 {
-    display: inline-block;
-    width: 100px;
-    height: 200px;
-    border: solid 2px black;
-    margin-left: 20px;
-    position: relative;
-    visibility: hidden;
-}
-
-.value-hit3 {
-    display: inline-block;
-    border: solid 3px red;
-    border-radius: 50%;
-    background-color: white;
-    padding: 30px;
-    position: absolute;
-    top: 35%;
-    left: 10%;
-}
-
-.draw1 {
-    display: inline-block;
-    width: 100px;
-    height: 200px;
-    border: solid 2px black;
-    margin-left: 20px;
-    position: relative;
-    visibility: hidden;
-}
-
-.value-draw1 {
-    display: inline-block;
-    border: solid 3px red;
-    border-radius: 50%;
-    background-color: white;
-    padding: 30px;
-    position: absolute;
-    top: 35%;
-    left: 10%;
-}
-
-.draw3 {
-    display: inline-block;
-    width: 100px;
-    height: 200px;
-    border: solid 2px black;
-    margin-left: 20px;
-    position: relative;
-    visibility: hidden;
-}
-
-.value-draw3 {
-    display: inline-block;
-    border: solid 3px red;
-    border-radius: 50%;
-    background-color: white;
-    padding: 30px;
-    position: absolute;
-    top: 35%;
-    left: 10%;
-}
-
-.hit1 {
-    display: inline-block;
-    width: 100px;
-    height: 200px;
-    border: solid 2px black;
-    margin-left: 20px;
-    position: relative;
-    visibility: hidden;
-}
-
-.value-hit1 {
-    display: inline-block;
-    border: solid 3px red;
-    border-radius: 50%;
-    background-color: white;
-    padding: 30px;
-    position: absolute;
-    top: 35%;
-    left: 10%;
-}
-
-.hit2 {
-    display: inline-block;
-    width: 100px;
-    height: 200px;
-    border: solid 2px black;
-    margin-left: 20px;
-    position: relative;
-    visibility: hidden;
-}
-
-.value-hit2 {
-    display: inline-block;
-    border: solid 3px red;
-    border-radius: 50%;
-    background-color: white;
-    padding: 30px;
-    position: absolute;
-    top: 35%;
-    left: 10%;
-}
-
-
-/* ///////////////////////////////////////////////////// 
 /* **BANK MODAL******** */
 
 .bank-modal-on {
@@ -342,7 +214,7 @@ body {
     border-radius: 50%;
     background-color: #ff3869;
     /* background: linear-gradient(top left, #4646d7, #1d1da7); */
-    margin-left: 15px;
+    /* margin-left: 55px; */
     cursor: pointer;
 }
 
@@ -373,15 +245,90 @@ body {
 }
 
 
-/*/////////////////////////////////////////
-*****VERICAL RIGHT***********/
+/* *****VERICAL RIGHT**********  */
+
+.vertical-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid 5px yellow;
+    position: absolute;
+    left: 810px;
+    width: 150px;
+    height: 1000px;
+}
 
 .deal {
-    position: absolute;
-    top: 34%;
-    left: 85%;
+    border: solid 5px blue;
+    border-radius: 20%;
+    height: 75px;
+    width: 125px;
     font-size: 30px;
-    background-color: #2f2fdb;
+    background-color: #6565d3;
+    text-align: center;
     color: white;
-    padding: 20px;
+    padding: 15px;
+    position: absolute;
+    top: 45%;
+    cursor: pointer;
+    visibility: visible;
+}
+
+.player-score {
+    display: flex;
+    justify-content: center;
+    border: solid 5px purple;
+    position: relative;
+    top: 300px;
+    width: 150px;
+    height: 100px;
+}
+
+.player-score-value {
+    display: inline-block;
+    background-color: white;
+    font-size: 30px;
+    margin: auto;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.player-label {
+    display: inline-block;
+    margin: auto;
+    margin-left: -10px;
+    font-size: 23px;
+    font-weight: bold;
+    color: black;
+}
+
+.dealer-score {
+    display: flex;
+    justify-content: center;
+    border: solid 5px purple;
+    position: relative;
+    top: -350px;
+    width: 150px;
+    height: 100px;
+}
+
+.dealer-score-value {
+    display: inline-block;
+    background-color: white;
+    font-size: 30px;
+    margin: auto;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.dealer-label {
+    display: inline-block;
+    margin: auto;
+    margin-left: -10px;
+    font-size: 23px;
+    font-weight: bold;
+    color: black;
 }

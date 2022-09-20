@@ -5,17 +5,27 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="CSS/style.css" rel="stylesheet" />
+    <link href="CSS/main.css" rel="stylesheet" />
+    <link href="CSS/dealer.css" rel="stylesheet" />
+    <link href="CSS/player.css" rel="stylesheet" />
     <title>blackjack_v1</title>
 </head>
 
 <body>
     <div class="main">
-        <!-- //////////////// DEALER DIV //////////////////////////////// -->
+        <!-- //////////// DEALER DIV //////////////////// -->
         <div class="dealer">
-            <div class="msg-dealer">DEALER MSG</div>
-
+            <div class="msg-dealer">Dealer Msg</div>
+            <div class="dealer-cards-container">
+                <div class="random4">random4 <span class="value-random4">xx</span></div>
+                <div class="random3">random3 <span class="value-random3">xx</span></div>
+                <div class="draw2">Draw2 <span class="value-draw2">xx</span></div>
+                <div class="draw4">Draw4 <span class="value-draw4">xx</span></div>
+                <div class="random1">random1 <span class="value-random1">xx</span></div>
+                <div class="random2">random2 <span class="value-random2">xx</span></div>
+            </div>
         </div>
+
         <!-- //////////////CENTER DIV////////////////// -->
         <div class="center">
             <div class="msg-center">
@@ -24,10 +34,13 @@
                 <input type="number" class="input-buyin-value" />
             </div>
 
-            <button class="btn-token-bet">xx</button>
+            <button class="btn-token-place">xx</button>
+            <button class="btn-double">x2</button>
 
             <p class="bet-amount">$</p>
         </div>
+
+        <!-- /////////// PLAYER DIV ///////////////////// -->
         <div class="player">
             <div class="msg-player">Buy-In (get tokens)</div>
             <div class="player-cards-container">
@@ -39,10 +52,19 @@
                 <div class="hit2">hit2 <span class="value-hit2">xx</span></div>
             </div>
         </div>
-    </div>
-    </div>
-    <div class="vertical-right">
-        <button class="deal">Deal</button>
+
+        <!-- /////////////// VERTICAL RIGHT ////////////////////// -->
+        <div class="vertical-right">
+            <button class="deal">Deal</button>
+            <div class="player-score">
+                <button class="player-score-value">xx</button>
+                <p class="player-label">Player</p>
+            </div>
+            <div class="dealer-score">
+                <button class="dealer-score-value">xx</button>
+                <p class="dealer-label">Dealer</p>
+            </div>
+        </div>
     </div>
 
     <!-- /////////BANK MODAL///////////////////// -->
