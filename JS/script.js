@@ -5,6 +5,8 @@ TO DO
 - implement rule of Dealer Must hold if hand > 16
 - implement face cards in the Math.Random to account for the fact that 10 value will occure more often */
 
+console.log("test fucking git");
+
 let dealerDraw2 = 0;
 let dealerDraw4 = 0;
 let dealerHand = 0;
