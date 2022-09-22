@@ -126,9 +126,7 @@ document.querySelector("#hitBtn").addEventListener("click", function() {
     document.querySelector(".player1Total").textContent = `Total ${player1Total}`;
 
     if (player1Total > 21) {
-        document.querySelector(
-            ".player1Total"
-        ).textContent = `${player1Total} Bust!`;
+        document.querySelector(".player1Total").textContent = `${player1Total} Bust!`;
         console.log("Player Busted");
         hiddenBusted.classList.remove("hiddenBusted");
     } else if (player1Total == 21) {
@@ -138,9 +136,7 @@ document.querySelector("#hitBtn").addEventListener("click", function() {
         console.log("Player Black Jack!");
         hiddenBlackJack.classList.remove("hiddenBlackJack");
     } else {
-        document.querySelector(
-            ".player1Total"
-        ).textContent = `Total ${player1Total}`;
+        document.querySelector(".player1Total").textContent = `Total ${player1Total}`;
     }
 }); //end of EventListener Fx
 

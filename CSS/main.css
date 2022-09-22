@@ -103,12 +103,14 @@ body {
 
 .btn-token-place {
     text-align: center;
-    font-size: 30px;
+    font-size: 15px;
     font-weight: bold;
-    color: white;
+    color: purple;
     border: solid 15px #e4cfb8;
     border-style: dashed;
-    padding: 18px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
     border-radius: 50%;
     background-color: #e4cfb8;
     /* margin-left: 20px; */
