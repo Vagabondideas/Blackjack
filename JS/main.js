@@ -2,27 +2,34 @@
 
 console.log("Hello Dud");
 
+let shoeBox = [];
 let countHit = 0;
-
-let cashBalance = 0; //bankroll
+let cashBalance = 0;
+let currentBankroll = 0; //bankroll
 let displayBet = 0; // face value of bet
 let totalBet = 0; //$ amount beside token
 
-const displayCashBalance = document.querySelector(".value");
+/* /// ********** GAME btn *********/ ///////////// */
+const btnDeal = document.querySelector(".deal");
+const btnDouble = document.querySelector(".btn-double");
+const btnHit = document.querySelector(".btn-hit");
+const btnHold = document.querySelector(".btn-hold");
+const btnReset = document.querySelector(".btn-reset"); // TEMP to trigger FX Reset
+
+const displayCurrentBankroll = document.querySelector(".value");
 const displayPlaceBet = document.querySelector(".msg-place-bet");
+const displayTokenPlace = document.querySelector(".btn-token-place");
 const displayBetValue = document.querySelector(".bet-amount");
 const displayPlayerMsg = document.querySelector(".msg-player");
 const displayDealerMsg = document.querySelector(".msg-dealer");
+const displayPlayerScore = document.querySelector(".player-score-value");
+const displayDealerScore = document.querySelector(".dealer-score-value");
 
-const inputMoney = document.querySelector(".input-buyin-value");
-
-const btnShowBuyin = document.querySelector(".btn-show-buyin-msg");
+/* /// ********** CENTER / CASH btn *********/ /////////////////// */
 const btnBuyin = document.querySelector(".btn-buyin-convert");
-const btnTokenPlace = document.querySelector(".btn-token-place");
-const btnDeal = document.querySelector(".deal");
-const btnDouble = document.querySelector(".btn-double");
-const btnHold = document.querySelector(".btn-hold");
-const btnHit = document.querySelector(".btn-hit");
+const inputMoney = document.querySelector(".input-buyin-value");
+const btnShowBuyin = document.querySelector(".btn-show-buyin-msg");
+
 const token10 = document.querySelector(".btn-token-10");
 const token20 = document.querySelector(".btn-token-20");
 const token50 = document.querySelector(".btn-token-50");
@@ -50,8 +57,6 @@ let dealerCard4ScoreValue = 0;
 let dealerCard5ScoreValue = 0;
 let dealerCard6ScoreValue = 0;
 
-const dealerScoreDisplay = document.querySelector(".dealer-score-value");
-
 let dealerHand = 0;
 let dealerTotalScore = 0;
 
@@ -77,8 +82,6 @@ let playerCard4ScoreValue = 0;
 let playerCard5ScoreValue = 0;
 let playerCard6ScoreValue = 0;
 
-const playerScoreDisplay = document.querySelector(".player-score-value");
-
 let playerHand = 0;
 let playerTotalScore = 0;
 
@@ -94,6 +97,104 @@ function convertCardValue(card) {
         return card;
     }
 }
+
+function dealerWins() {
+    displayDealerMsg.style.visibility = "visible";
+    displayDealerMsg.textContent = "Dealer Wins";
+    currentBankroll = cashBalance - totalBet;
+    displayCurrentBankroll.textContent = `${currentBankroll}`;
+}
+
+function playerWins() {
+    displayPlayerMsg.style.visibility = "visible";
+    displayPlayerMsg.textContent = "You Win";
+    currentBankroll = cashBalance + totalBet;
+    displayCurrentBankroll.textContent = `${currentBankroll}`;
+}
+
+///////////      RESET      //////////////////////////////////
+btnReset.addEventListener("click", function() {
+    countHit = 0;
+    totalBet = 0;
+    shoeBox = [];
+
+    btnHit.style.visibility = "hidden";
+    btnHold.style.visibility = "hidden";
+    btnDeal.style.visibility = "visible";
+    btnDouble.style.display = "none";
+
+    btnBuyin.style.visibility = "hidden";
+    inputMoney.style.visibility = "hidden";
+    displayPlaceBet.style.visibility = "visible";
+    displayTokenPlace.style.visibility = "visible";
+    displayBetValue.textContent = "$";
+    displayDealerMsg.style.visibility = "hidden";
+    displayPlayerMsg.style.visibility = "hidden";
+    displayDealerScore.textContent = "";
+    displayPlayerScore.textContent = "";
+
+    displayTokenPlace.textContent = `token`;
+    displayTokenPlace.style.textAlign = "center";
+    displayTokenPlace.style.fontSize = "20px";
+    displayTokenPlace.style.fontWeight = "bold";
+    displayTokenPlace.style.color = "purple";
+    displayTokenPlace.style.border = "solid 12px";
+    displayTokenPlace.style.borderStyle = "dashed";
+    displayTokenPlace.style.borderColor = "#80080";
+    displayTokenPlace.style.padding = "15px";
+    displayTokenPlace.style.paddingTop = "28px";
+    displayTokenPlace.style.paddingBottom = "28px";
+    displayTokenPlace.style.borderRadius = "50%";
+    displayTokenPlace.style.backgroundColor = "#e4cfb8";
+
+    dealerCard1.style.visibility = "hidden";
+    dealerCard2.style.visibility = "hidden";
+    dealerCard3.style.visibility = "hidden";
+    dealerCard4.style.visibility = "hidden";
+    dealerCard5.style.visibility = "hidden";
+    dealerCard6.style.visibility = "hidden";
+
+    dealerCard1Value.style.visibility = "hidden";
+    dealerCard2Value.style.visibility = "hidden";
+    dealerCard3Value.style.visibility = "hidden";
+    dealerCard4Value.style.visibility = "hidden";
+    dealerCard5Value.style.visibility = "hidden";
+    dealerCard6Value.style.visibility = "hidden";
+
+    //  dealerCard1ScoreValue = 0;
+    //  dealerCard2ScoreValue = 0;
+    //  dealerCard3ScoreValue = 0;
+    //  dealerCard4ScoreValue = 0;
+    //  dealerCard5ScoreValue = 0;
+    //  dealerCard6ScoreValue = 0;
+
+    dealerHand = 0;
+    dealerTotalScore = 0;
+
+    playerCard1.style.visibility = "hidden";
+    playerCard2.style.visibility = "hidden";
+    playerCard3.style.visibility = "hidden";
+    playerCard4.style.visibility = "hidden";
+    playerCard5.style.visibility = "hidden";
+    playerCard6.style.visibility = "hidden";
+
+    playerCard1Value.style.visibility = "hidden";
+    playerCard2Value.style.visibility = "hidden";
+    playerCard3Value.style.visibility = "hidden";
+    playerCard4Value.style.visibility = "hidden";
+    playerCard5Value.style.visibility = "hidden";
+    playerCard6Value.style.visibility = "hidden";
+
+    // let playerCard1ScoreValue = 0;
+    // let playerCard2ScoreValue = 0;
+    // let playerCard3ScoreValue = 0;
+    // let playerCard4ScoreValue = 0;
+    // let playerCard5ScoreValue = 0;
+    // let playerCard6ScoreValue = 0;
+
+    playerHand = 0;
+    playerTotalScore = 0;
+});
 
 function resetBuyinValue() {
     inputMoney.value = "";
@@ -146,12 +247,13 @@ btnBuyin.addEventListener("click", function() {
     if (cashValue === 0) {
         displayPlayerMsg.textContent = `You must enter cash amount`;
     } else {
-        cashBalance += cashValue;
-        console.log("cashBalance after Buy-in = " + cashBalance);
+        currentBankroll += cashValue;
+        cashBalance = currentBankroll;
+        console.log("currentBankroll after Buy-in = " + currentBankroll);
         btnBuyin.style.visibility = "hidden";
         inputMoney.style.visibility = "hidden";
 
-        displayCashBalance.textContent = `${cashBalance} $`;
+        displayCurrentBankroll.textContent = `${currentBankroll} $`;
 
         function turnONPlaceBetMsg() {
             displayPlaceBet.style.visibility = "visible";
@@ -166,107 +268,108 @@ btnBuyin.addEventListener("click", function() {
 token10.addEventListener("click", function() {
     console.log("clicked token 10");
 
-    if (cashBalance == 0) {
+    if (currentBankroll == 0) {
         playerDisplay_ON();
-        displayPlayerMsg.textContent = `You must buy-in first`;
-    } else if (cashBalance < totalBet) {
+        displayPlayerMsg.textContent = "you have zero token";
+    } else if (currentBankroll < totalBet) {
         playerDisplay_ON();
         displayPlayerMsg.textContent = `Not enough tokens / ALL IN`;
-        displayBetValue.textContent = `${cashBalance} $`;
+        displayBetValue.textContent = `${currentBankroll} $`;
     } else {
         playerDisplay_OFF();
         displayBet = 10;
         totalBet += displayBet;
 
-        btnTokenPlace.textContent = "10";
-        btnTokenPlace.style.border = "solid 15px #1d1da7";
-        btnTokenPlace.style.borderStyle = "dashed";
-        btnTokenPlace.style.backgroundColor = "#6b6bd8";
-        btnTokenPlace.style.padding = "18px";
-        btnTokenPlace.style.fontSize = "28px";
-        btnTokenPlace.style.fontWeight = "bold";
-        btnTokenPlace.style.color = "white";
+        displayTokenPlace.textContent = "10";
+        displayTokenPlace.style.border = "solid 15px #1d1da7";
+        displayTokenPlace.style.borderStyle = "dashed";
+        displayTokenPlace.style.backgroundColor = "#6b6bd8";
+        displayTokenPlace.style.padding = "18px";
+        displayTokenPlace.style.fontSize = "28px";
+        displayTokenPlace.style.fontWeight = "bold";
+        displayTokenPlace.style.color = "white";
 
         displayBetValue.textContent = `$${totalBet}`;
     }
 });
 
 token20.addEventListener("click", function() {
-    if (cashBalance == 0) {
+    if (currentBankroll == 0) {
         playerDisplay_ON();
-        displayPlayerMsg.textContent = `You must buy-in first`;
-    } else if (cashBalance < totalBet) {
+        displayPlayerMsg.textContent = `You have zero token`;
+    } else if (currentBankroll < totalBet) {
         playerDisplay_ON();
         displayPlayerMsg.textContent = `Not enough tokens / ALL IN`;
-        displayBetValue.textContent = `${cashBalance} $`;
+        displayPlayerMsg.textContent = ``;
+        displayBetValue.textContent = `${currentBankroll} $`;
     } else {
         playerDisplay_OFF();
         displayBet = 20;
         totalBet += displayBet;
 
-        btnTokenPlace.textContent = "20";
-        btnTokenPlace.style.border = "solid 15px #07341e";
-        btnTokenPlace.style.borderStyle = "dashed";
-        btnTokenPlace.style.backgroundColor = "#3ea268";
-        btnTokenPlace.style.padding = "18px";
-        btnTokenPlace.style.fontSize = "28px";
-        btnTokenPlace.style.fontWeight = "bold";
-        btnTokenPlace.style.color = "white";
+        displayTokenPlace.textContent = "20";
+        displayTokenPlace.style.border = "solid 15px #07341e";
+        displayTokenPlace.style.borderStyle = "dashed";
+        displayTokenPlace.style.backgroundColor = "#3ea268";
+        displayTokenPlace.style.padding = "18px";
+        displayTokenPlace.style.fontSize = "28px";
+        displayTokenPlace.style.fontWeight = "bold";
+        displayTokenPlace.style.color = "white";
 
         displayBetValue.textContent = `$${totalBet}`;
     }
 });
 
 token50.addEventListener("click", function() {
-    if (cashBalance == 0) {
+    if (currentBankroll == 0) {
         playerDisplay_ON();
         displayPlayerMsg.textContent = `You must buy-in first`;
-    } else if (cashBalance < totalBet) {
+    } else if (currentBankroll < totalBet) {
         playerDisplay_ON();
         displayPlayerMsg.textContent = `Not enough tokens / ALL IN`;
-        displayBetValue.textContent = `${cashBalance} $`;
+        displayBetValue.textContent = `${currentBankroll} $`;
     } else {
         playerDisplay_OFF();
         displayBet = 50;
         totalBet += displayBet;
 
-        btnTokenPlace.textContent = "50";
-        btnTokenPlace.style.border = "solid 15px #5a121c";
-        btnTokenPlace.style.borderStyle = "dashed";
-        btnTokenPlace.style.backgroundColor = "#ff3869";
-        btnTokenPlace.style.padding = "18px";
-        btnTokenPlace.style.fontSize = "28px";
-        btnTokenPlace.style.fontWeight = "bold";
-        btnTokenPlace.style.color = "white";
+        displayTokenPlace.textContent = "50";
+        displayTokenPlace.style.border = "solid 15px #5a121c";
+        displayTokenPlace.style.borderStyle = "dashed";
+        displayTokenPlace.style.backgroundColor = "#ff3869";
+        displayTokenPlace.style.padding = "18px";
+        displayTokenPlace.style.fontSize = "28px";
+        displayTokenPlace.style.fontWeight = "bold";
+        displayTokenPlace.style.color = "white";
 
         displayBetValue.textContent = `$${totalBet}`;
     }
 });
 
 token100.addEventListener("click", function() {
-    if (cashBalance == 0) {
+    if (currentBankroll == 0) {
         playerDisplay_ON();
         displayPlayerMsg.textContent = `You must buy-in first`;
-    } else if (cashBalance < totalBet) {
+    } else if (currentBankroll < totalBet) {
         playerDisplay_ON();
         displayPlayerMsg.textContent = `Not enough tokens / ALL IN`;
-        displayBetValue.textContent = `${cashBalance} $`;
+        displayBetValue.textContent = `${currentBankroll} $`;
     } else {
         playerDisplay_OFF();
         displayBet = 100;
         totalBet += displayBet;
 
-        btnTokenPlace.textContent = "100";
-        btnTokenPlace.style.border = "solid 15px #664c09";
-        btnTokenPlace.style.borderStyle = "dashed";
-        btnTokenPlace.style.backgroundColor = "#c3985c";
-        btnTokenPlace.style.borderRadius = "65%";
-        btnTokenPlace.style.padding = "10px";
-        btnTokenPlace.style.paddingTop = "18px";
-        btnTokenPlace.style.paddingBottom = "18px";
-        btnTokenPlace.style.fontSize = "28px";
-        btnTokenPlace.style.fontWeight = "bold";
-        btnTokenPlace.style.color = "white";
+        displayTokenPlace.textContent = "100";
+        displayTokenPlace.style.border = "solid 15px #664c09";
+        displayTokenPlace.style.borderStyle = "dashed";
+        displayTokenPlace.style.backgroundColor = "#c3985c";
+        displayTokenPlace.style.borderRadius = "65%";
+        displayTokenPlace.style.padding = "10px";
+        displayTokenPlace.style.paddingTop = "18px";
+        displayTokenPlace.style.paddingBottom = "18px";
+        displayTokenPlace.style.fontSize = "28px";
+        displayTokenPlace.style.fontWeight = "bold";
+        displayTokenPlace.style.color = "white";
 
         displayBetValue.textContent = `$${totalBet}`;
     }
@@ -274,26 +377,30 @@ token100.addEventListener("click", function() {
 
 ////////////////////// DEAL ////////////////////////
 btnDeal.addEventListener("click", function() {
+    countHit = 0;
+    console.log("hit count after btnDeal = " + countHit);
     playerDisplay_OFF();
 
     if (totalBet == 0) {
         playerDisplay_ON();
-        displayPlayerMsg.textContent = `Place bet or Pass`;
+        displayPlayerMsg.textContent = `place your bet first`;
         return;
     }
 
     playerCard1.style.visibility = "visible";
+    playerCard1Value.style.visibility = "visible";
     playerCard2.style.visibility = "visible";
+    playerCard2Value.style.visibility = "visible";
     dealerCard1.style.visibility = "visible";
+    dealerCard1Value.style.visibility = "visible";
     dealerCard2.style.visibility = "visible";
-    /*pop-Up Button Double if cash balance provides */
-    if (cashBalance !== totalBet && cashBalance >= totalBet * 2) {
+
+    //////////// X2 providing cash balance //////////////////
+    if (currentBankroll !== totalBet && currentBankroll >= totalBet * 2) {
         placeBetMsg_OFF();
-        // btnTokenPlace.style.visibility = "hidden";
         btnDouble.style.display = "flex";
     }
 
-    let shoeBox = [];
     for (let i = 0; i < 15; i++) {
         shoeBox.push(Math.floor(Math.random() * 13) + 1);
     }
@@ -377,14 +484,15 @@ btnDeal.addEventListener("click", function() {
     dealerHand = dealerCard1ScoreValue + dealerCard2ScoreValue;
     playerHand = playerCard1ScoreValue + playerCard2ScoreValue;
 
-    dealerScoreDisplay.textContent = `${dealerCard1ScoreValue}`;
-    playerScoreDisplay.textContent = `${playerHand}`;
+    displayDealerScore.textContent = `${dealerCard1ScoreValue}`;
+    displayPlayerScore.textContent = `${playerHand}`;
 
     if (playerHand == 21) {
         playerDisplay_ON();
         displayPlayerMsg.textContent = `BLACK JACK !`;
         dealerDisplay_ON();
         displayDealerMsg.textContent = `Player Wins !`;
+        currentBankroll = cashBalance + totalBet * 1.5;
     }
 
     btnDeal_OFF();
@@ -397,7 +505,7 @@ btnDeal.addEventListener("click", function() {
         let doubleBet = totalBet * 2;
         console.log("total bet after double = " + totalBet);
 
-        if (doubleBet > cashBalance) {
+        if (doubleBet > currentBankroll) {
             playerDisplay_ON();
             displayPlayerMsg.textContent = `Insufficient Funds`;
             /*TO DO
@@ -411,23 +519,41 @@ btnDeal.addEventListener("click", function() {
     /* ///////*********HIT ME *********/ /////////////  */
 
     btnHit.addEventListener("click", function() {
-        countHit++;
-        console.log("countHit = " + countHit);
-        console.log("card5 = " + card5Value);
+        console.log("hit count after btnHit = " + countHit);
 
-        if (countHit == 1) {
+        if (countHit == 0) {
             playerCard3.style.visibility = "visible";
             playerCard3Value.style.visibility = "visible";
             playerTotalScore = playerHand + playerCard3ScoreValue;
-            playerScoreDisplay.textContent = `${playerTotalScore}`;
+            displayPlayerScore.textContent = `${playerTotalScore}`;
+            countHit = 1;
         }
 
-        if (countHit == 2) {
+        console.log("hit1 playerTotalScore = " + playerTotalScore);
+
+        if (playerTotalScore == 21) {
+            playerDisplay_ON();
+            displayPlayerMsg.textContent = `BLACK JACK !`;
+            dealerDisplay_ON();
+            displayDealerMsg.textContent = `Player Wins !`;
+            currentBankroll = cashBalance + totalBet * 1.5;
+        }
+
+        if (playerTotalScore > 21) {
+            playerDisplay_ON();
+            displayPlayerMsg.textContent = `BUSTED`;
+            dealerDisplay_ON();
+            displayDealerMsg.textContent = `Dealer Wins !`;
+            currentBankroll = cashBalance - totalBet;
+        }
+
+        if (countHit == 1) {
             playerCard4.style.visibility = "visible";
             playerCard4Value.style.visibility = "visible";
             playerTotalScore =
                 playerHand + playerCard3ScoreValue + playerCard4ScoreValue;
-            playerScoreDisplay.textContent = `${playerTotalScore}`;
+            displayPlayerScore.textContent = `${playerTotalScore}`;
+            countHit = 2;
         }
 
         if (countHit == 3) {
@@ -438,7 +564,7 @@ btnDeal.addEventListener("click", function() {
                 playerCard3ScoreValue +
                 playerCard4ScoreValue +
                 playerCard5ScoreValue;
-            playerScoreDisplay.textContent = `${playerTotalScore}`;
+            displayPlayerScore.textContent = `${playerTotalScore}`;
         }
 
         if (countHit == 4) {
@@ -450,17 +576,52 @@ btnDeal.addEventListener("click", function() {
                 playerCard4ScoreValue +
                 playerCard5ScoreValue +
                 playerCard6ScoreValue;
-            playerScoreDisplay.textContent = `${playerTotalScore}`;
+            displayPlayerScore.textContent = `${playerTotalScore}`;
         }
 
         if (playerTotalScore > 21) {
             playerDisplay_ON();
             displayPlayerMsg.textContent = `Busted`;
+            currentBankroll = cashBalance - totalBet;
+            displayCurrentBankroll.textContent = `${currentBankroll}`;
         }
 
         if (playerTotalScore == 21) {
             playerDisplay_ON();
             displayPlayerMsg.textContent = `Black Jack!`;
+            currentBankroll = cashBalance + totalBet * 1.5;
         }
     }); //End Hit Fx
+
+    /* ///////*********HOLD (Stand) *********/ /////////////  */
+    btnHold.addEventListener("click", function() {
+        /* //////////DEALER HAND //////////////// */
+        dealerCard2Value.style.visibility = "visible";
+        // dealerTotalScore = dealerHand;
+        displayDealerScore.textContent = `${dealerHand}`;
+
+        /////// DEALER HAND >= 17 ///Must Stay //////////////
+        if (dealerHand >= playerTotalScore) {
+            dealerWins();
+        } else if (dealerHand > 16 && dealerHand < playerTotalScore) {
+            playerWins();
+        } else if (dealerHand > 16 && dealerHand > playerTotalScore) {
+            dealerWins();
+        }
+
+        /////// DEALER HAND < 17 ///Must Draw //////////////
+        if (dealerHand < 17) {
+            dealerCard3.style.visibility = "visible";
+            dealerCard3Value.style.visibility = "visible";
+            dealerTotalScore = dealerHand + dealerCard3ScoreValue;
+            displayDealerScore.textContent = `${dealerTotalScore}`;
+        }
+
+        console.log("dealerTotalScore after 1st draw = " + dealerTotalScore);
+        if (dealerTotalScore > playerTotalScore && dealerTotalScore <= 21) {
+            dealerWins();
+        } else {
+            playerWins();
+        }
+    }); // End Hold Fx
 }); // End Deal Fx

@@ -26,7 +26,7 @@
 }
 
 .value-random4 {
-    display: inline-block;
+    /* display: inline-block; */
     border: solid 3px red;
     border-radius: 50%;
     background-color: white;
@@ -47,7 +47,7 @@
 }
 
 .value-random3 {
-    display: inline-block;
+    /* display: inline-block; */
     border: solid 3px red;
     border-radius: 50%;
     background-color: white;
@@ -69,14 +69,14 @@
 }
 
 .value-draw2 {
-    display: inline-block;
+    /* display: inline-block; */
     border: solid 3px red;
     border-radius: 50%;
     background-color: white;
     padding: 30px;
     position: absolute;
     top: 30%;
-    left: 6%;
+    left: 10%;
 }
 
 .draw4 {
@@ -91,14 +91,14 @@
 }
 
 .value-draw4 {
-    display: inline-block;
+    /* display: inline-block; */
     border: solid 3px red;
     border-radius: 50%;
     background-color: white;
     padding: 30px;
     position: absolute;
     top: 30%;
-    left: 6%;
+    left: 10%;
     visibility: hidden;
 }
 
@@ -109,17 +109,18 @@
     border: solid 2px black;
     margin-left: 20px;
     position: relative;
+    top: 55px;
     visibility: hidden;
 }
 
 .value-random1 {
-    display: inline-block;
+    /* display: inline-block; */
     border: solid 3px red;
     border-radius: 50%;
     background-color: white;
     padding: 30px;
     position: absolute;
-    top: 35%;
+    top: 30%;
     left: 10%;
 }
 
@@ -130,16 +131,18 @@
     border: solid 2px black;
     margin-left: 20px;
     position: relative;
+    top: 55px;
     visibility: hidden;
 }
 
 .value-random2 {
-    display: inline-block;
+    /* display: inline-block; */
+    align-items: center;
     border: solid 3px red;
     border-radius: 50%;
     background-color: white;
     padding: 30px;
     position: absolute;
-    top: 35%;
-    left: 10%;
+    top: 30%;
+    left: 20%;
 }
