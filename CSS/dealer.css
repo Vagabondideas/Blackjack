@@ -14,49 +14,6 @@
     visibility: hidden;
 }
 
-.random4 {
-    display: inline-block;
-    width: 100px;
-    height: 200px;
-    border: solid 2px black;
-    margin-left: 20px;
-    position: relative;
-    text-align: center;
-    visibility: hidden;
-}
-
-.value-random4 {
-    /* display: inline-block; */
-    border: solid 3px red;
-    border-radius: 50%;
-    background-color: white;
-    padding: 30px;
-    position: absolute;
-    top: 35%;
-    left: 10%;
-}
-
-.random3 {
-    display: inline-block;
-    width: 100px;
-    height: 200px;
-    border: solid 2px black;
-    margin-left: 20px;
-    position: relative;
-    visibility: hidden;
-}
-
-.value-random3 {
-    /* display: inline-block; */
-    border: solid 3px red;
-    border-radius: 50%;
-    background-color: white;
-    padding: 30px;
-    position: absolute;
-    top: 35%;
-    left: 10%;
-}
-
 .draw2 {
     display: inline-block;
     width: 100px;
@@ -144,5 +101,49 @@
     padding: 30px;
     position: absolute;
     top: 30%;
-    left: 20%;
+    left: 10%;
+}
+
+.random3 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    top: 55px;
+    visibility: hidden;
+}
+
+.value-random3 {
+    /* display: inline-block; */
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 30%;
+    left: 10%;
+}
+
+.random4 {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    border: solid 2px black;
+    margin-left: 20px;
+    position: relative;
+    text-align: center;
+    visibility: hidden;
+}
+
+.value-random4 {
+    /* display: inline-block; */
+    border: solid 3px red;
+    border-radius: 50%;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
 }

@@ -616,13 +616,10 @@ btnHold.addEventListener("click", function() {
     ///// IF DEALER HAND >= 17 (Must Stay) //////////////
     if (dealerHand >= 17 && dealerHand > playerTotalScore) {
         dealerWins();
-        return;
     } else if (dealerHand == playerTotalScore) {
         dealerWins();
-        return;
     } else {
         playerWins();
-        return;
     }
 
     ///// IF DEALER HAND < 17 (Must Draw) //////////////
