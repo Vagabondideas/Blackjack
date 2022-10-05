@@ -1,9 +1,8 @@
 "use strict";
 
-console.log("Hello Dud");
+console.log("Running main2.0.js");
 
-// let cashInput = 0;
-let betValue = 0;
+let cashInput = 0;
 let dealerHand = 0;
 let dealerTotalScore = 0;
 let playerHand = 0;
@@ -12,21 +11,22 @@ let playerTotalScore = 0;
 let hitArray = [];
 let hitCount = 0;
 let drawCount = 0;
-// let cashBalance = 0; //to compute bankroll after a round (+/- totalBet)
+let cashBalance = 0; //to compute bankroll after a round (+/- totalBet)
 let currentBankroll = 0; //bankroll
-
+let betValue = 0; // to compute totalBet by adding value of individual tokens
 let totalBet = 0; //$ amount beside token at displayTokenBetPlace
 
-/////////////  GAME BUTTONS  ////////////////////////////////
+/////////////GAME BUTTONS /////////////////////////////////
 const btnBuyin = document.querySelector(".btn-buyin-convert");
 const inputMoney = document.querySelector(".input-buyin-value");
+
 const btnDeal = document.querySelector(".deal");
 const btnDouble = document.querySelector(".btn-double");
 const btnHit = document.querySelector(".btn-hit");
 const btnHold = document.querySelector(".btn-hold");
 const btnReset = document.querySelector(".btn-reset");
 
-///////////////  DISPLAY ////////////////////////////////////
+//////////////////// DISPLAY ////////////////////////////////////
 const displayBuyinBtn = document.querySelector(".btn-show-buyin-msg");
 const displayCurrentBankroll = document.querySelector(".value");
 const displayPlaceBetMsg = document.querySelector(".msg-place-bet");
@@ -37,19 +37,20 @@ const displayDealerMsg = document.querySelector(".msg-dealer");
 const displayPlayerScore = document.querySelector(".player-score-value");
 const displayDealerScore = document.querySelector(".dealer-score-value");
 
-///////////////// TOKENS  ///////////////////////////////////
+//////////////// TOKENS/////////////////// //
 const token10 = document.querySelector(".btn-token-10");
 const token20 = document.querySelector(".btn-token-20");
 const token50 = document.querySelector(".btn-token-50");
 const token100 = document.querySelector(".btn-token-100");
 
-//////////////  DEALER CARDS  ///////////////////////////////
+/*****************DEALER CARDS*******************/
 const dealerCard1 = document.querySelector(".draw2");
 const dealerCard2 = document.querySelector(".draw4");
 const dealerDraw1 = document.querySelector(".random1");
 const dealerDraw2 = document.querySelector(".random2");
 const dealerDraw3 = document.querySelector(".random3");
 const dealerDraw4 = document.querySelector(".random4");
+
 const dealerCard1Value = document.querySelector(".value-draw2");
 const dealerCard2Value = document.querySelector(".value-draw4");
 const dealerDraw1Value = document.querySelector(".value-random1");
@@ -57,13 +58,14 @@ const dealerDraw2Value = document.querySelector(".value-random2");
 const dealerDraw3Value = document.querySelector(".value-random3");
 const dealerDraw4Value = document.querySelector(".value-random4");
 
-//////////////  PLAYER CARDS  /////////////////////////////
+/*****************PLAYER CARDS*******************/
 const playerCard1 = document.querySelector(".draw1");
 const playerCard2 = document.querySelector(".draw3");
 const playerHit1 = document.querySelector(".hit1");
 const playerHit2 = document.querySelector(".hit2");
 const playerHit3 = document.querySelector(".hit3");
 const playerHit4 = document.querySelector(".hit4");
+
 const playerCard1Value = document.querySelector(".value-draw1");
 const playerCard2Value = document.querySelector(".value-draw3");
 const playerHit1Value = document.querySelector(".value-hit1");
@@ -73,33 +75,38 @@ const playerHit4Value = document.querySelector(".value-hit4");
 
 /////////////   RESET  //////////////////////////
 btnReset.addEventListener("click", function() {
-    hitArray = [];
-    hitCount = 0;
+    ///After HOLD
 
+    // cashInput = 0;
+    // inputMoney.style.textContent = "";
+    // inputMoney.value = "";
     totalBet = 0;
     displayTotalBetAmount.textContent = "";
     dealerHand = 0;
     dealerTotalScore = 0;
-    displayDealerScore.textContent = "";
+    displayDealerScore.textContent = "00";
     playerHand = 0;
     playerTotalScore = 0;
-    displayPlayerScore.textContent = "";
+    displayPlayerScore.textContent = "00";
 
-    ///  INITIALIZE TO FRAME 1, BANKROLL + PLACE BET //////////////
+    hitArray = [];
+    hitCount = 0;
+    drawCount = 0;
+
     btnHit.style.visibility = "hidden";
     btnHold.style.visibility = "hidden";
     btnDeal.style.visibility = "visible";
     btnDouble.style.display = "none";
-    // btnBuyin.style.visibility = "hidden";
-    // inputMoney.style.visibility = "hidden";
+
+    btnBuyin.style.visibility = "hidden";
+    inputMoney.style.visibility = "hidden";
     displayPlaceBetMsg.style.visibility = "visible";
     displayTotalBetAmount.textContent = `$ 00`;
+
     displayDealerMsg.style.visibility = "hidden";
     displayPlayerMsg.style.visibility = "hidden";
-    displayDealerScore.textContent = "00";
-    displayPlayerScore.textContent = "00";
 
-    ///  Reformating Token Place to initial style (otherwise it keeps the last token)
+    /////Reformating Token Place to initial style (otherwise it keeps the last token)
     displayTokenPlace.style.visibility = "visible";
     displayTokenPlace.textContent = `token`;
     displayTokenPlace.style.textAlign = "center";
@@ -115,7 +122,7 @@ btnReset.addEventListener("click", function() {
     displayTokenPlace.style.borderRadius = "50%";
     displayTokenPlace.style.backgroundColor = "#e4cfb8";
 
-    ///  CLEAR TABLE (Hide all cards and values) /////////////
+    ///Hidding ALL CARDS and VALUES ///////////////
     dealerCard1.style.visibility = "hidden";
     dealerCard2.style.visibility = "hidden";
     dealerDraw1.style.visibility = "hidden";
@@ -143,7 +150,8 @@ btnReset.addEventListener("click", function() {
     playerHit4Value.style.visibility = "hidden";
 });
 
-///////////  UTILITY FUNCTIONS  /////////////////////////
+/***************UTILITY FUNCTIONS ******************** */
+
 function convertCardValue(card) {
     // let value = 0;
     if (card == 1) {
@@ -155,65 +163,72 @@ function convertCardValue(card) {
     }
 }
 
-function isPlayerBust() {
-    console.log("playerBust is Called");
-    console.log("playerTotalScore = " + playerTotalScore);
-    if (playerTotalScore > 21) {
-        dealerWins();
+function trackBankroll(winner) {
+    if (winner == dealerWins) {
+        currentBankroll = currentBankroll - totalBet;
+        console.log("dealerWins currentBankroll - totalBet = " + currentBankroll);
+        displayCurrentBankroll.textContent = `${currentBankroll}`;
+        return;
+        // } else if (abc === blackjack) {
+        //     currentBankroll = currentBankroll + totalBet * 1.5;
+        //     return currentBankroll;
+    } else if (winner === playerWins) {
+        currentBankroll = currentBankroll + totalBet;
+        displayCurrentBankroll.textContent = `${currentBankroll}`;
         return;
     }
-    return;
 }
 
-function isDealerBust() {
-    console.log("dealerBust is Called");
-    console.log("dealerTotalScore = dealerTotalScore");
-    if (dealerTotalScore > 21) {
-        playerWins();
-        return;
+function isPlayerBust() {
+    console.log("playerBust is called");
+    if (playerTotalScore > 21) {
+        displayPlayerMsg.style.visibility = "visible";
+        displayPlayerMsg.textContent = "Bust!";
+        displayDealerMsg.style.visibility = "visible";
+        displayDealerMsg.textContent = `Dealer Wins`;
+
+        dealerWins();
+        // trackBankroll("dealerWins");
     }
-    return;
 }
 
 function dealerWins() {
     console.log("dealerWins is called");
-    if (playerTotalScore > 21) {
-        displayDealerMsg.style.visibility = "visible";
-        displayDealerMsg.textContent = "Dealer Wins";
-        displayPlayerMsg.style.visibility = "visible";
-        displayPlayerMsg.textContent = "Bust!";
-        trackBankroll(dealerWins);
-        return;
-    } else {
-        displayDealerMsg.style.visibility = "visible";
-        displayDealerMsg.textContent = "Dealer Wins";
-        displayPlayerMsg.style.visibility = "visible";
-        displayPlayerMsg.textContent = "Dealer Wins";
-        // currentBankroll = cashBalance - totalBet;
-        // currentBankroll -= totalBet;
-        trackBankroll(dealerWins);
-        return;
-    }
+
+    displayDealerMsg.style.visibility = "visible";
+    displayPlayerMsg.style.visibility = "visible";
+    playerTotalScore > 21 ?
+        (displayPlayerMsg.textContent = "Bust!") :
+        (displayPlayerMsg.textContent = "Dealer Wins");
+
+    displayDealerMsg.textContent = "Dealer Wins";
+
+    trackBankroll(dealerWins);
+    currentBankroll = currentBankroll;
+    displayCurrentBankroll.textContent = `${currentBankroll}`;
     return;
 }
 
 function playerWins() {
     console.log("playerWins is called");
+    let blackjack = 21;
     if (dealerTotalScore > 21) {
         displayPlayerMsg.style.visibility = "visible";
         displayPlayerMsg.textContent = "You Win";
         displayDealerMsg.style.visibility = "visible";
         displayDealerMsg.textContent = "Bust!";
         trackBankroll(playerWins);
-        return;
+        // displayCurrentBankroll.textContent = `${currentBankroll}`;
     } else if (playerHand == 21) {
-        let blackjack = blackjack;
+        console.log("blackjack cond in playerWins exec");
         displayPlayerMsg.style.visibility = "visible";
         displayPlayerMsg.textContent = "Black Jack!";
         displayDealerMsg.style.visibility = "visible";
         displayDealerMsg.textContent = "Player Wins";
+        // currentBankroll = cashBalance + totalBet;
+        // currentBankroll += totalBet;
         trackBankroll(blackjack);
-        return;
+        // displayCurrentBankroll.textContent = `${currentBankroll}`;
     } else {
         displayPlayerMsg.style.visibility = "visible";
         displayPlayerMsg.textContent = "You Win";
@@ -222,30 +237,13 @@ function playerWins() {
         // currentBankroll = cashBalance + totalBet;
         // currentBankroll += totalBet;
         trackBankroll(playerWins);
-        return;
+
+        // displayCurrentBankroll.textContent = `${currentBankroll}`;
     }
     return;
 }
 
-function trackBankroll(winner) {
-    // let abc = winner;
-    console.log("Bankroll when fx is called = " + currentBankroll);
-
-    if (winner === dealerWins) {
-        currentBankroll = currentBankroll - totalBet;
-        console.log("dealerWins currentBankroll - totalBet = " + currentBankroll);
-        displayCurrentBankroll.textContent = `${currentBankroll}`;
-        // } else if (winner === blackjack) {
-        //     currentBankroll = currentBankroll + totalBet * 1.5;
-        //     return currentBankroll;
-    } else if (winner === playerWins) {
-        currentBankroll = currentBankroll + totalBet;
-        console.log("playerWins currentBankroll + totalBet = " + currentBankroll);
-        displayCurrentBankroll.textContent = `${currentBankroll}`;
-    }
-}
-
-//////////////  CASH MODAL  ////////////////////////////////
+// ////////CASH MODAL ////////////////
 displayBuyinBtn.addEventListener("click", function() {
     btnBuyin.style.visibility = "visible";
     inputMoney.style.visibility = "visible";
@@ -259,6 +257,7 @@ btnBuyin.addEventListener("click", function() {
         displayPlayerMsg.textContent = `enter your cash amount`;
     } else {
         currentBankroll += cashInput;
+        // cashBalance = currentBankroll;
         btnBuyin.style.visibility = "hidden";
         inputMoney.style.visibility = "hidden";
         displayCurrentBankroll.textContent = `${currentBankroll} $`;
@@ -278,8 +277,8 @@ token10.addEventListener("click", function() {
     } else if (currentBankroll < betValue || currentBankroll < totalBet) {
         displayPlayerMsg.style.visibility = "visible";
         displayPlayerMsg.textContent = `Not enough tokens / ALL IN`;
-        displayTotalBetAmount.textContent = `$ ${currentBankroll}`;
         totalBet = currentBankroll;
+        // displayTotalBetAmount.textContent = `$ ${currentBankroll}`;
     } else {
         displayPlayerMsg.style.visibility = "hidden";
         displayTokenPlace.textContent = "10";
@@ -290,9 +289,8 @@ token10.addEventListener("click", function() {
         displayTokenPlace.style.fontSize = "28px";
         displayTokenPlace.style.fontWeight = "bold";
         displayTokenPlace.style.color = "white";
-
-        displayTotalBetAmount.textContent = `$ ${totalBet}`;
     }
+    displayTotalBetAmount.textContent = `$ ${totalBet}`;
 });
 
 token20.addEventListener("click", function() {
@@ -306,8 +304,8 @@ token20.addEventListener("click", function() {
         displayPlayerMsg.style.visibility = "visible";
         displayPlayerMsg.textContent = `Not enough tokens / ALL IN`;
         displayPlayerMsg.textContent = ``;
-        displayTotalBetAmount.textContent = `$ ${currentBankroll}`;
         totalBet = currentBankroll;
+        // displayTotalBetAmount.textContent = `$ ${currentBankroll}`;
     } else {
         displayPlayerMsg.style.visibility = "hidden";
         displayTokenPlace.textContent = "20";
@@ -318,9 +316,8 @@ token20.addEventListener("click", function() {
         displayTokenPlace.style.fontSize = "28px";
         displayTokenPlace.style.fontWeight = "bold";
         displayTokenPlace.style.color = "white";
-
-        displayTotalBetAmount.textContent = `$ ${totalBet}`;
     }
+    displayTotalBetAmount.textContent = `$ ${totalBet}`;
 });
 
 token50.addEventListener("click", function() {
@@ -334,8 +331,8 @@ token50.addEventListener("click", function() {
         totalBet = currentBankroll;
         displayPlayerMsg.style.visibility = "visible";
         displayPlayerMsg.textContent = `Not enough tokens / ALL IN`;
-        displayTotalBetAmount.textContent = `${currentBankroll} $`;
         totalBet = currentBankroll;
+        // displayTotalBetAmount.textContent = `${currentBankroll} $`;
     } else {
         displayPlayerMsg.style.visibility = "hidden";
         displayTokenPlace.textContent = "50";
@@ -374,27 +371,28 @@ token100.addEventListener("click", function() {
         displayTokenPlace.style.fontSize = "28px";
         displayTokenPlace.style.fontWeight = "bold";
         displayTokenPlace.style.color = "white";
-
-        displayTotalBetAmount.textContent = `$ ${totalBet}`;
     }
+    displayTotalBetAmount.textContent = `$ ${totalBet}`;
 });
 
 //DEAL//////// DEAL /////////DEAL ////////DEAL///////////////
 btnDeal.addEventListener("click", function() {
+    let hitCount = 0;
     displayPlayerMsg.style.visibility = "hidden";
-    //////  CHECK IF BET PLACED /////////////////
+
     if (totalBet == 0) {
         displayPlayerMsg.style.visibility = "visible";
         displayPlayerMsg.textContent = `place your bet first`;
         return;
     }
-    //////  SHOW EMPTY CARDS  /////////////////
+
+    /// SHOW EMPTY CARDS /////////
     playerCard1.style.visibility = "visible";
     playerCard2.style.visibility = "visible";
     dealerCard1.style.visibility = "visible";
     dealerCard2.style.visibility = "visible";
 
-    //////////  DRAW HAND CARDS  /////////////////
+    //////////////  DRAW HAND CARDS ///////////
     let dealArray = [];
     for (let i = 0; i < 4; i++) {
         dealArray.push(Math.floor(Math.random() * 13) + 1);
@@ -405,7 +403,7 @@ btnDeal.addEventListener("click", function() {
     let card3FaceValue = dealArray[2];
     let card4FaceValue = dealArray[3];
 
-    ////////  ACE ? SET CARDS FACE VALUE /////////////////
+    //////////////  SET CARDS FACE VALUE //////////////////
     card1FaceValue == 1 ?
         (playerCard1Value.textContent = `Ace`) :
         (playerCard1Value.textContent = `${card1FaceValue}`);
@@ -422,19 +420,19 @@ btnDeal.addEventListener("click", function() {
         (dealerCard2Value.textContent = `Ace`) :
         (dealerCard2Value.textContent = `${card4FaceValue}`);
 
-    ///////  SHOW CARDS FACE VALUE ///////////////////
+    ///////////// SHOW CARD FACE VALUE ///////////////////
     playerCard1Value.style.visibility = "visible";
     dealerCard1Value.style.visibility = "visible";
     playerCard2Value.style.visibility = "visible";
     dealerCard2Value.style.visibility = "hidden";
 
-    ////////  SET CARDS SCORE VALUE /////////////////
+    //////////// SET CARD SCORE VALUE /////////////////
     let playerCard1ScoreValue = convertCardValue(card1FaceValue);
     let dealerCard1ScoreValue = convertCardValue(card2FaceValue);
     let playerCard2ScoreValue = convertCardValue(card3FaceValue);
     let dealerCard2ScoreValue = convertCardValue(card4FaceValue);
 
-    //////////  DISPLAY(HAND) SCORE VALUE ///////////
+    ////////// COMPUTE AND DISPLAY(HAND) SCORE VALUE ///////////
     dealerHand = dealerCard1ScoreValue + dealerCard2ScoreValue;
     playerHand = playerCard1ScoreValue + playerCard2ScoreValue;
     playerTotalScore = playerHand;
@@ -443,6 +441,13 @@ btnDeal.addEventListener("click", function() {
 
     ////// CHECK FOR NATURAL BLACKJACK (INSTANT WIN) //////////
     if (playerHand == 21) {
+        // let blackjack = 21;
+        // displayPlayerMsg.style.visibility = "visible";
+        // displayPlayerMsg.textContent = `BLACK JACK !`;
+        // displayDealerMsg.style.visibility = "visible";
+        // displayDealerMsg.textContent = `Player Wins !`;
+        // trackBankroll("blackjack");
+        // currentBankroll = cashBalance + totalBet * 1.5;
         playerWins();
         displayCurrentBankroll.textContent = `${currentBankroll}`;
     }
@@ -479,194 +484,189 @@ btnDeal.addEventListener("click", function() {
 //HIT/////HIT/////////HIT////////HIT ///////////// HIT //////////
 btnHit.addEventListener("click", function() {
     btnDouble.style.display = "none";
+
+    for (let i = 0; i <= hitCount; i++) {
+        hitArray.push(Math.floor(Math.random() * 13) + 1);
+    }
     hitCount++;
-    console.log("hitCount when Hit is called = " + hitCount);
 
-    ////  RESET SCORE VALUES
-    let playerHit1ScoreValue = 0;
-    let playerHit2ScoreValue = 0;
-    let playerHit3ScoreValue = 0;
-    let playerHit4ScoreValue = 0;
+    let hit1FaceValue = hitArray[0];
+    let hit2FaceValue = hitArray[1];
+    let hit3FaceValue = hitArray[2];
+    let hit4FaceValue = hitArray[3];
 
-    /////////////  FIRST HIT  ///////////////////////
-    if ((hitCount = 1)) {
-        let hit1FaceValue = Math.floor(Math.random() * 13) + 1;
-        // hitCount = 1;
-        ////  Display Card and CardValue
-        playerHit1.style.visibility = "visible";
-        playerHit1Value.style.visibility = "visible";
-        hit1FaceValue == 1 ?
-            (playerHit1Value.textContent = `Ace`) :
-            (playerHit1Value.textContent = `${hit1FaceValue}`);
-        //// Convert CardValue into CardScore
-        playerHit1ScoreValue = convertCardValue(hit1FaceValue);
-        //// Add Score Values and display in Player Score
-        playerTotalScore = playerHand + playerHit1ScoreValue;
+    ///////////  ACE ?  SET CARDS FACE VALUE//////////////
+    hit1FaceValue == 1 ?
+        (playerHit1Value.textContent = `Ace`) :
+        (playerHit1Value.textContent = `${hit1FaceValue}`);
+
+    hit2FaceValue == 1 ?
+        (playerHit2Value.textContent = `Ace`) :
+        (playerHit2Value.textContent = `${hit2FaceValue}`);
+
+    hit3FaceValue == 1 ?
+        (playerHit3Value.textContent = `Ace`) :
+        (playerHit3Value.textContent = `${hit3FaceValue}`);
+
+    hit4FaceValue == 1 ?
+        (playerHit4Value.textContent = `Ace`) :
+        (playerHit4Value.textContent = `${hit4FaceValue}`);
+
+    ////////////  SET CARD SCORE VALUE /////////////
+
+    let hit1ScoreValue = convertCardValue(hit1FaceValue);
+    let hit2ScoreValue = convertCardValue(hit2FaceValue);
+    let hit3ScoreValue = convertCardValue(hit3FaceValue);
+    let hit4ScoreValue = convertCardValue(hit4FaceValue);
+
+    //////////  DISPLAY CARDS and PLAYER SCORE  ///////////
+    if (hitCount == 1) {
+        playerHit1.style.visibility = "visible"; //display card
+        playerHit1Value.style.visibility = "visible"; //display value
+        playerTotalScore = playerHand + hit1ScoreValue;
         displayPlayerScore.textContent = `${playerTotalScore}`;
         isPlayerBust();
-        // return;
     }
 
-    /////////////  SECOND HIT ///////////////////////
-    else if ((hitCount = 2)) {
-        let hit2FaceValue = Math.floor(Math.random() * 13) + 1;
-        hitCount = 2;
+    if (hitCount == 2) {
         playerHit2.style.visibility = "visible";
         playerHit2Value.style.visibility = "visible";
-        hit2FaceValue == 1 ?
-            (playerHit2Value.textContent = `Ace`) :
-            (playerHit2Value.textContent = `${hit2FaceValue}`);
-        playerHit2ScoreValue = convertCardValue(hit2FaceValue);
-        playerTotalScore = playerHand + playerHit1ScoreValue + playerHit2ScoreValue;
+        playerTotalScore = playerHand + hit1ScoreValue + hit2ScoreValue;
         displayPlayerScore.textContent = `${playerTotalScore}`;
         isPlayerBust();
-        // return;
     }
-    // for (let i = 0; i <= hitArray.length; i++) {
-    //     hitArray.push(Math.floor(Math.random() * 13) + 1);
-    // }
-    // console.log("this is hitArray " + hitArray);
-    // hitCount++;
-    // console.log("hitCount = " + hitCount);
 
-    // let hit1FaceValue = hitArray[0];
-    // let hit2FaceValue = hitArray[1];
-    // let hit3FaceValue = hitArray[2];
-    // let hit4FaceValue = hitArray[3];
+    if (hitCount == 3) {
+        playerHit3.style.visibility = "visible";
+        playerHit3Value.style.visibility = "visible";
+        playerTotalScore =
+            playerHand + hit1ScoreValue + hit2ScoreValue + hit3ScoreValue;
+        displayPlayerScore.textContent = `${playerTotalScore}`;
+        isPlayerBust();
+    }
 
-    //////  ACE ?  DIAPLAY CARDS FACE VALUE//////////////
-    // hit1FaceValue == 1 ?
-    //     (playerHit1Value.textContent = `Ace`) :
-    //     (playerHit1Value.textContent = `${hit1FaceValue}`);
-
-    // hit2FaceValue == 1 ?
-    //     (playerHit2Value.textContent = `Ace`) :
-    //     (playerHit2Value.textContent = `${hit2FaceValue}`);
-
-    // hit3FaceValue == 1 ?
-    //     (playerHit3Value.textContent = `Ace`) :
-    //     (playerHit3Value.textContent = `${hit3FaceValue}`);
-
-    // hit4FaceValue == 1 ?
-    //     (playerHit4Value.textContent = `Ace`) :
-    //     (playerHit4Value.textContent = `${hit4FaceValue}`);
-
-    /////////  SET CARD SCORE VALUE /////////////
-
-    // let hit1ScoreValue = convertCardValue(hit1FaceValue);
-    // let hit2ScoreValue = convertCardValue(hit2FaceValue);
-    // let hit3ScoreValue = convertCardValue(hit3FaceValue);
-    // let hit4ScoreValue = convertCardValue(hit4FaceValue);
-
-    ///////  DISPLAY CARDS and PLAYER SCORE  ///////////
-    // if (hitCount == 1) {
-    //     playerHit1.style.visibility = "visible"; //display card
-    //     playerHit1Value.style.visibility = "visible"; //display value
-    //     playerTotalScore = playerHand + hit1ScoreValue;
-    //     displayPlayerScore.textContent = `${playerTotalScore}`;
-    //     isPlayerBust();
-    //     return;
+    // if (playerTotalScore > 21) {
+    //     displayPlayerMsg_ON();
+    //     displayPlayerMsg.textContent = `Busted`;
+    //     // currentBankroll = cashBalance - totalBet;
+    //     trackBankroll();
+    //     displayCurrentBankroll.textContent = `${currentBankroll}`;
     // }
 
-    // if (hitCount == 2) {
-    //     playerHit2.style.visibility = "visible";
-    //     playerHit2Value.style.visibility = "visible";
-    //     playerTotalScore = playerHand + hit1ScoreValue + hit2ScoreValue;
-    //     displayPlayerScore.textContent = `${playerTotalScore}`;
-    //     isPlayerBust();
-    //     return;
-    // }
-
-    // if (hitCount == 3) {
-    //     playerHit3.style.visibility = "visible";
-    //     playerHit3Value.style.visibility = "visible";
-    //     playerTotalScore =
-    //         playerHand + hit1ScoreValue + hit2ScoreValue + hit3ScoreValue;
-    //     displayPlayerScore.textContent = `${playerTotalScore}`;
-    //     isPlayerBust();
-    // }
-
-    // if (hitCount == 4) {
-    //     playerHit4.style.visibility = "visible";
-    //     playerHit4Value.style.visibility = "visible";
-    //     playerTotalScore =
-    //         playerHand +
-    //         hit1ScoreValue +
-    //         hit2ScoreValue +
-    //         hit3ScoreValue +
-    //         hit4ScoreValue;
-    //     displayPlayerScore.textContent = `${playerTotalScore}`;
-    //     isPlayerBust();
+    // if (playerTotalScore == 21) {
+    /// PAYS 1.5 ?? DON'T THINK SO
+    //// DISPLAY BLACKJACK IN PLAYERmsg AND TIMER
+    //     playerDisplay_ON();
+    //     displayPlayerMsg.textContent = `Black Jack!`;
+    //     currentBankroll = cashBalance + totalBet * 1.5;
     // }
 }); //End Hit Fx
 
-//////////////  HOLD (Stand)   //////////////////////////////
+//////////*********HOLD (Stand) *********//////////////////
 btnHold.addEventListener("click", function() {
-    console.log("dealerHand when Fx Hold is called = " + dealerHand);
-    ////  RESET SCORE VALUES
     let dealerDraw1ScoreValue = 0;
     let dealerDraw2ScoreValue = 0;
     let dealerDraw3ScoreValue = 0;
     let dealerDraw4ScoreValue = 0;
 
-    /////  DISPLAY DEALER HAND AND SCORE  ////////////////
-    dealerCard2Value.style.visibility = "visible";
-    displayDealerScore.textContent = `${dealerHand}`;
-
-    ///// IF DEALER HAND >= 17 (Must Stay) //////////////
-    if (dealerHand >= 17 && dealerHand > playerTotalScore) {
-        dealerWins();
-    } else if (dealerHand == playerTotalScore) {
-        dealerWins();
-    } else {
-        playerWins();
+    function displayDealerHand() {
+        dealerCard2Value.style.visibility = "visible";
+        dealerTotalScore = dealerHand;
+        displayDealerScore.textContent = `${dealerTotalScore}`;
     }
 
-    ///// IF DEALER HAND < 17 (Must Draw) //////////////
-    if (dealerHand < 17) {
+    displayDealerHand();
+
+    // STAY or DRAW
+    if (dealerHand >= 17) {
+        dealerMustStay();
+    } else if (dealerHand < 17) {
+        dealerMustDraw();
+    } // end stay or draw
+
+    /////////  STAY  ///////////////////
+    function dealerMustStay() {
+        console.log("dealerMustStay is called");
+        if (dealerHand > playerTotalScore) {
+            dealerWins();
+            // trackBankroll(dealerWins); //trackBankroll included in FX
+        } else if (dealerHand === playerTotalScore) {
+            dealerWins();
+            // trackBankroll(dealerWins); //trackBankroll included in FX
+        } else {
+            playerWins(); // trackBancroll included in FX
+            // trackBankroll(playerWins);
+        }
+    } // end stay fx
+
+    /////// DEALER HAND < 17 ///Must Draw //////////////
+    function dealerMustDraw() {
+        console.log("dealerMustDraw is called");
+        console.log("drawCount = " + drawCount);
         /////////////  FIRST DRAW  ///////////////////////
-        let draw1FaceValue = Math.floor(Math.random() * 13) + 1;
-        drawCount = 1;
-        dealerDraw1.style.visibility = "visible";
-        dealerDraw1Value.style.visibility = "visible";
-        draw1FaceValue == 1 ?
-            (dealerDraw1Value.textContent = `Ace`) :
-            (dealerDraw1Value.textContent = `${draw1FaceValue}`);
-        dealerDraw1ScoreValue = convertCardValue(draw1FaceValue);
-        dealerTotalScore = dealerHand + dealerDraw1ScoreValue;
-        displayDealerScore.textContent = `${dealerTotalScore}`;
-        isDealerBust();
-        // return;
-    }
+        if ((drawCount = 0)) {
+            let draw1FaceValue = Math.floor(Math.random() * 13) + 1;
+            drawCount++;
+            console.log("drawCount inside mustDraw one = " + drawCount);
+            dealerDraw1.style.visibility = "visible";
+            dealerDraw1Value.style.visibility = "visible";
+            draw1FaceValue == 1 ?
+                (dealerDraw1Value.textContent = `Ace`) :
+                (dealerDraw1Value.textContent = `${draw1FaceValue}`);
 
-    /////////// DEALER SCORE < PLAYER SCORE AFTER DRAW
-    //////////////  DRAW AGAIN (2nd DRAW) ///////////////////
+            dealerDraw1ScoreValue = convertCardValue(draw1FaceValue);
+            dealerTotalScore = dealerHand + dealerDraw1ScoreValue;
+            console.log("dealerTotalScore after addition = " + dealerTotalScore);
+            displayDealerScore.textContent = `${dealerTotalScore}`;
+            compare();
+            // return;
+        } // End First Draw
 
-    if (dealerHand < 17 && dealerTotalScore < playerTotalScore && drawCount == 1) {
-        let draw2FaceValue = Math.floor(Math.random() * 13) + 1;
-        drawCount = 2;
-        dealerDraw2.style.visibility = "visible";
-        dealerDraw2Value.style.visibility = "visible";
-        draw2FaceValue == 1 ?
-            (dealerDraw2Value.textContent = `Ace`) :
-            (dealerDraw2Value.textContent = `${draw2FaceValue}`);
-        dealerDraw2ScoreValue = convertCardValue(draw2FaceValue);
-        dealerTotalScore = dealerHand + dealerDraw1ScoreValue + dealerDraw2ScoreValue;
-        displayDealerScore.textContent = `${dealerTotalScore}`;
-        isDealerBust();
-    }
+        //////////////  DRAW AGAIN (2nd DRAW) ///////////////////
+        if ((drawCount = 2)) {
+            let draw2FaceValue = Math.floor(Math.random() * 13) + 1;
+            drawCount++;
+            dealerDraw2.style.visibility = "visible";
+            dealerDraw2Value.style.visibility = "visible";
+            draw2FaceValue == 1 ?
+                (dealerDraw2Value.textContent = `Ace`) :
+                (dealerDraw2Value.textContent = `${draw2FaceValue}`);
 
-    //////////  RESULTS  WINNER-LOOSER
-    /////////  DEALER SCORE > PLAYER SCORE  ///////////////
-    if (dealerTotalScore > playerTotalScore) {
-        dealerWins();
-        // currentBankroll = currentBankroll;
-        displayCurrentBankroll.textContent = `${currentBankroll}`;
-    }
+            dealerDraw2ScoreValue = convertCardValue(draw2FaceValue);
+            dealerTotalScore =
+                dealerHand + dealerDraw1ScoreValue + dealerDraw2ScoreValue;
+            displayDealerScore.textContent = `${dealerTotalScore}`;
+        } // end 2nd draw
 
-    //////////  EVEN SCORE (dealer wins)  //////////////
-    if (dealerTotalScore == playerTotalScore) {
-        dealerWins();
-        displayCurrentBankroll.textContent = `${currentBankroll}`;
-    }
-});
+        if ((drawCount = 3)) {
+            let draw3FaceValue = Math.floor(Math.random() * 13) + 1;
+            drawCount++;
+            dealerDraw3.style.visibility = "visible";
+            dealerDraw3Value.style.visibility = "visible";
+            draw3FaceValue == 1 ?
+                (dealerDraw3Value.textContent = `Ace`) :
+                (dealerDraw3Value.textContent = `${draw3FaceValue}`);
+
+            dealerDraw3ScoreValue = convertCardValue(draw3FaceValue);
+            dealerTotalScore =
+                dealerHand +
+                dealerDraw1ScoreValue +
+                dealerDraw2ScoreValue +
+                dealerDraw3ScoreValue;
+            displayDealerScore.textContent = `${dealerTotalScore}`;
+        } // end 3rd draw
+
+        function compare() {
+            console.log("compare is called");
+            if (dealerTotalScore > 21) {
+                playerWins();
+                return;
+            } else if (dealerTotalScore >= playerTotalScore) {
+                dealerWins();
+                return;
+            } else if (dealerTotalScore < playerTotalScore) {
+                drawCount = 2;
+            } //end IFs statements
+        } // end compare Fx
+    } // end dealerMustDraw
+}); // end handler Fx
