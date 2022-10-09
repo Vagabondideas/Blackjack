@@ -164,16 +164,20 @@ btnReset.addEventListener("click", function() {
 
 /***************UTILITY FUNCTIONS ******************** */
 
+//************************************************************ */
+//                    THE ACE PUZZLE - TRY WITH ACE ARRAY PUSH..
+//************************************************************ */
 function convertCardValue(card) {
     if (card == 1) {
         return 11;
-        ////  implement 1 or 11 here if totalScore > 21 cond ////
     } else if (card >= 10) {
         return 10;
     } else {
         return card;
     }
 }
+
+//************************************************************ */
 
 function trackBankroll(winner) {
     console.log("trackBankroll is called");
@@ -438,12 +442,28 @@ btnDeal.addEventListener("click", function() {
     let dealerCard2ScoreValue = convertCardValue(card4FaceValue);
 
     ////  COMPUTE AND DISPLAY(HAND) SCORE  ///////////
-    dealerHand = dealerCard1ScoreValue + dealerCard2ScoreValue;
     playerHand = playerCard1ScoreValue + playerCard2ScoreValue;
-    playerTotalScore = playerHand;
-    dealerTotalScore = dealerHand;
+    playerTotalScore = playerHand; // Need to use total Score to compare with dealer draws when HOLD on handScore (i.e no hits)
+    if (playerHand > 21) {
+        displayPlayerMsg.style.visibility = "visible";
+        displayPlayerMsg.textContent = "Sorry No Split Allowed";
+        playerHand == 12;
+        playerTotalScore == 12;
+        displayPlayerScore.textContent = `${playerTotalScore}`;
+    } else if (card1FaceValue == card3FaceValue) {
+        displayPlayerMsg.style.visibility = "visible";
+        displayPlayerMsg.textContent = "Sorry No Split Allowed";
+        displayPlayerScore.textContent = `${playerTotalScore}`;
+    } else {
+        displayPlayerScore.textContent = `${playerTotalScore}`;
+    }
+
+    dealerHand = dealerCard1ScoreValue + dealerCard2ScoreValue;
+    // playerHand = playerCard1ScoreValue + playerCard2ScoreValue;
+    // playerTotalScore = playerHand;
+    // dealerTotalScore = dealerHand;
     displayDealerScore.textContent = `${dealerCard1ScoreValue}`;
-    displayPlayerScore.textContent = `${playerTotalScore}`;
+    // displayPlayerScore.textContent = `${playerTotalScore}`;
 
     ////  CHECK FOR NATURAL BLACKJACK (INSTANT WIN) //////////
     if (playerHand == 21) {
@@ -629,7 +649,7 @@ btnHold.addEventListener("click", function() {
         } else {
             isDealerBust();
             drawCount = 2;
-            console.log("2nd draw is req draw = " + draw);
+            console.log("2nd draw is req draw = " + drawCount);
         }
         ////  DRAW AGAIN IF NOT BUST and DEALER < PLAYER  //////
         if (drawCount == 2 && dealerTotalScore < playerTotalScore) {
@@ -646,7 +666,7 @@ btnHold.addEventListener("click", function() {
             } else {
                 isDealerBust();
                 drawCount = 3;
-                console.log("3rd draw is req draw = " + draw);
+                console.log("3rd draw is req draw = " + drawCount);
             }
             ///  DRAW AGAIN IF NOT BUST and DEALER < PLAYER  ////
             if (drawCount == 3 && dealerTotalScore < playerTotalScore) {
